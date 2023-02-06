@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BusinessObject.Product>;
+@{
+
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<p>
+    <a href="/Product/Create">Create New</a>
+</p>
+@*<h2>Product List</h2>*@
+<form method="get"  asp-action="Index">
+    <input value="@ViewData["key"]" type="text" placeholder="Product name.." name="search">
+    <button type="submit"><i class="fa fa-search"></i></button>
+</form>
+<h3>@ViewData["Mess"]</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.ProductId)</th>
+            <th>Product Name</th>
+            <th>Weight</th>
+            <th>UnitPrice</th>
+            <th>UnitsInStock</th>
+            <th>Category</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductId</td>
+                <td>@item.ProductName</td>
+                <td>@item.Weight</td>
+                <td>@item.UnitPrice</td>
+                <td>@item.UnitsInStock</td>
+                <td>@item.CategoryId</td>
+                <td>
+                    <a href="#">Edit</a>
+                </td>
+                <td>
+                    <a href="#">Details</a>
+                </td>
+                <td>
+                    <a href="#">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody> 
+</table>
