@@ -1,11 +1,9 @@
 ﻿@model BusinessObject.Product
-@{
-}
-<h3>Create product</h3>
+<h3>Edit product</h3>
 <h5><a asp-action="Index" asp-controller="Product">Back to list</a></h5>
-<form asp-controller="Product" asp-action="CreateProduct" method="post">
+<form asp-controller="Product" asp-action="EditProduct" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" value="1" asp-for="@Model.ProductId" class="form-control" />
+    <input type="hidden" asp-for="@Model.ProductId" class="form-control" />
     <div style="margin-bottom: 40px;" class="form-group">
         <label asp-for="@Model.ProductName" class="control-label"></label>
         <input asp-for="@Model.ProductName" class="form-control" />
@@ -17,7 +15,7 @@
     <div style="margin-bottom: 40px;" class="form-group">
         <label asp-for="@Model.UnitPrice" class="control-label"></label>
         <input asp-for="@Model.UnitPrice" class="form-control" />
-        
+
     </div>
     <div style="margin-bottom: 40px;" class="form-group">
         <label asp-for="@Model.UnitsInStock" class="control-label"></label>
@@ -28,13 +26,13 @@
         <select asp-for="@Model.CategoryId" class="form-control">
             @foreach (var item in ViewBag.Categories)
             {
-                <option value="@item.CategoryId">@item.CategoryName</option>
+                <option value="@item.CategoryId" selected="@(item.CategoryId == Model.CategoryId)">@item.CategoryName</option>
             }
         </select>
         @*<input asp-for="@Model.CategoryId" class="form-control" />*@
     </div>
-    
+
     <div style="margin-bottom: 40px;" class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" />
+        <input type="submit" value="Edit" class="btn btn-primary" />
     </div>
 </form>

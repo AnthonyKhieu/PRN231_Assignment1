@@ -10,6 +10,7 @@ namespace eStoreAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class ProductsAPI : ControllerBase
     {
         private readonly IProductRepository repository;
@@ -18,16 +19,23 @@ namespace eStoreAPI.Controllers
         {
             this.repository = repository;
         }
-         
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult GetAll(string? search)
         {
             List<ProductRespond> products = repository.GetProducts(search); 
             return Ok(products);
         }
-        
-        [HttpPost]
+
+        [HttpGet("{id}")]
         [Authorize]
+        public IActionResult GetProductByID(int id)
+        {
+            Product productRespond = repository.GetProductByID(id);
+            return Ok(productRespond);
+        }
+
+        [HttpPost]
         public IActionResult PostProduct(ProductRespond product)
         {
             repository.SaveProduct(product);
@@ -39,8 +47,8 @@ namespace eStoreAPI.Controllers
             });
         }
 
-        [HttpDelete("id")]
-        [Authorize]
+        [HttpDelete("{id}")]
+        
         public IActionResult DeleteProduct(int id)
         {
             var p = repository.GetProductByID(id);
@@ -56,8 +64,8 @@ namespace eStoreAPI.Controllers
                 Data = p,
             });
         }
-        [HttpPut("id")]
-        [Authorize]
+        [HttpPut("{id}")]
+       
         public IActionResult UpdateProduct(int id,ProductRespond productRespond)
         {
             var pTmp = repository.GetProductByID(id);

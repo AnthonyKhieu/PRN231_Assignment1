@@ -34,6 +34,7 @@ namespace DataAccess
            
             try
             {
+                
                 if(!string.IsNullOrEmpty(search))
                 {
                     products =  products.Where(p => p.ProductName.Contains(search));

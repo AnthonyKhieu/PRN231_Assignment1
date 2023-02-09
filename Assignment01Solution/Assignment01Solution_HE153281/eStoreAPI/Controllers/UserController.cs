@@ -11,6 +11,7 @@ namespace eStoreAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class UserController : ControllerBase
     {
         private readonly MyDbContext context;
@@ -54,10 +55,10 @@ namespace eStoreAPI.Controllers
                     new Claim(ClaimTypes.Email,user.Email),
                     new Claim("UserName",user.UserName),
                     new Claim("Id",user.Id.ToString()),
-
+                    new Claim(ClaimTypes.Role,user.UserName),
                     new Claim("TokenId",Guid.NewGuid().ToString())
                 }),
-                Expires = DateTime.UtcNow.AddMinutes(5),
+                Expires = DateTime.UtcNow.AddMinutes(15),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(secretKeyBytes),
                                           SecurityAlgorithms.HmacSha512Signature)
             };

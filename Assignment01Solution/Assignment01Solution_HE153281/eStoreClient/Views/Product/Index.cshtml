@@ -21,8 +21,7 @@
             <th>UnitPrice</th>
             <th>UnitsInStock</th>
             <th>Category</th>
-            <th></th>
-            <th></th>
+            <th>Action</th>            
             <th></th>
         </tr>
     </thead>
@@ -37,15 +36,23 @@
                 <td>@item.UnitsInStock</td>
                 <td>@item.CategoryId</td>
                 <td>
-                    <a href="#">Edit</a>
-                </td>
+                    <a href="/product/edit?id=@item.ProductId">Edit</a>
+                </td>            
                 <td>
-                    <a href="#">Details</a>
-                </td>
-                <td>
-                    <a href="#">Delete</a>
+                    <a href="#" type="button" onclick="ConfirmDelete(@item.ProductId)">Delete</a>
                 </td>
             </tr>
         }
     </tbody> 
 </table>
+<script>
+    function ConfirmDelete(id) {
+       var res = confirm("Are you sure delete this item");
+       if(res == true){
+            window.location.assign("/product/delete?id="+id);
+       }else{
+           return false;
+       }
+
+    }
+</script>
