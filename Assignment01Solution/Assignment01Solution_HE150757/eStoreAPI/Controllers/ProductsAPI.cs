@@ -20,7 +20,6 @@ namespace eStoreAPI.Controllers
             this.repository = repository;
         }
         [HttpGet]
-        [Authorize(Roles = "Admin")]
         public IActionResult GetAll(string? search)
         {
             List<ProductDTO> products = repository.GetProducts(search); 
@@ -28,7 +27,6 @@ namespace eStoreAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize]
         public IActionResult GetProductByID(int id)
         {
             Product productRespond = repository.GetProductByID(id);
@@ -48,7 +46,6 @@ namespace eStoreAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        
         public IActionResult DeleteProduct(int id)
         {
             var p = repository.GetProductByID(id);

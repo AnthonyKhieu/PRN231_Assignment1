@@ -1,6 +1,7 @@
 ﻿using Azure;
 using BusinessObject;
 using eStoreAPI.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Repositories;
@@ -117,20 +118,6 @@ namespace eStoreClient.Controllers
             }
             return RedirectToAction("Index");
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }
